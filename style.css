@@ -1,0 +1,67 @@
+/* 文字を流す(marquee)設定 */
+.marquee {
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  gap: 1rem;
+  font-size: small;
+}
+
+@keyframes marquee {
+  0% {
+    translate: 0;
+  }
+
+  100% {
+    translate: calc(-100% - 1rem);
+  }
+}
+
+
+
+/* LPのアニメーション */
+@keyframes slideInRt {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLt {
+  from{
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInTp {
+  from{
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from{
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1;
+  }
+}
