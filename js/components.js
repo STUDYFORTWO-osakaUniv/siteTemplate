@@ -702,6 +702,7 @@ const reserveFormComponent = {
 			confirm: false,
 			loading: false,
 			submitted: false,
+			notAccept: false,
 			submitError: false,
 			noBooksInCart: false
 		}
@@ -773,7 +774,8 @@ const reserveFormComponent = {
 				const response = await postInfo(data);
 				console.log(response);
 				this.loading = false;
-				if (response.message === "success") {
+				// if (response.message === "success") {
+				if (response.message === "open") {
 					const booksRemove = this.booksInCart;
 					for (let i = booksRemove.length - 1; i >= 0; i--) {
 						for (let j = booksRemove[i].cart - 1; j >= 0; j--) {
@@ -781,7 +783,9 @@ const reserveFormComponent = {
 						}
 					}
 					this.submitted = true;
-				} else {
+				} else if(response.message === "close"){
+					this.notAccept = true;
+				}else {
 					this.submitError = true;
 				}
 
@@ -935,6 +939,28 @@ const reserveFormComponent = {
 								<v-btn
 									variant="text"
 									@click="submitted = false"
+								>Close</v-btn>
+							</div>
+							</v-alert>
+							
+						</v-card>
+						
+					</v-dialog>
+					<v-dialog
+						v-model="notAccept"
+						width="auto"
+					>
+						<v-card>
+							<v-alert
+								type="warning"
+								title="予約受付期間外"
+								text="申し訳ありません。現在、予約受付期間外のためご予約いただくことができません。またのご利用をお待ちしております。"
+							>
+							<br>
+							<div style="text-align: end;">
+								<v-btn
+									variant="text"
+									@click="notAccept = false"
 								>Close</v-btn>
 							</div>
 							</v-alert>
