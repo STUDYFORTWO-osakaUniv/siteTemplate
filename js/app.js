@@ -37,9 +37,9 @@ const app = Vue.createApp({
 		document.title = data.settings.title;
 
 		const bookData = get_data(data.id);
-		while(!bookData){
-			setTimeout({}, 200);
-		}
+		// while(!bookData){
+			// setTimeout({}, 200);
+		// }
 		bookData.forEach(book => {
 			this.books.push({ ...book, like: false, cart: 0 });
 		})
