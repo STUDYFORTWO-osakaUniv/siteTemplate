@@ -36,18 +36,13 @@ const app = Vue.createApp({
 		document.head.insertAdjacentHTML('beforeend', data.settings.fontStyle);
 		document.title = data.settings.title;
 
-		const bookData = get_data(data.id);
-		while (!bookData) {
-			setTimeout(() => { console.log("200") }, 200);
-		}
-		bookData.forEach(book => {
-			this.books.push({ ...book, like: false, cart: 0 });
+		new Promise((resolve, reject) => {
+			const bookData = get_data(data.id);
+		}).then(() => {
+			bookData.forEach(book => {
+				this.books.push({ ...book, like: false, cart: 0 });
+			})
 		})
-
-
-
-
-
 
 		const booksActive = getCookie("booksActive");
 
