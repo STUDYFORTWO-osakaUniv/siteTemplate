@@ -1,5 +1,5 @@
-// GET requestのデータに置き換え
-const bookData = data.books;
+// const bookData = data.books;
+const bookData = get_data(data.id);
 
 const { createVuetify } = Vuetify;
 const vuetify = createVuetify();
