@@ -22,10 +22,11 @@ function get_data(id) {
         hashArray.push(hash);
       }
       console.log(hashArray);
+      return hashArray;
     })
     .catch((error) => {
       // ここでエラー処理
       console.error(error);
     })
-  return hashArray;
+  // return hashArray;
 }
