@@ -39,6 +39,7 @@ const app = Vue.createApp({
 		// let bookData;
 		new Promise((resolve, reject) => {
 			const bookData = get_data(data.id);
+			while(!bookData){};
 			resolve(bookData);
 		}).then((bookData) => {
 			bookData.forEach(book => {
