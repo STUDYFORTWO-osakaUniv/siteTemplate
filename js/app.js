@@ -1,5 +1,5 @@
 // const bookData = data.books;
-const bookData = get_data(data.id);
+// const bookData = get_data(data.id);
 
 const { createVuetify } = Vuetify;
 const vuetify = createVuetify();
@@ -35,19 +35,24 @@ const app = Vue.createApp({
 
 		document.head.insertAdjacentHTML('beforeend', data.settings.fontStyle);
 		document.title = data.settings.title;
-
-		bookData.forEach(book => {
-			this.books.push({ ...book, like: false, cart: 0 });
+		const bookData = get_data(data.id).then(() => {
+			bookData.forEach(book => {
+				this.books.push({ ...book, like: false, cart: 0 });
+			})
 		})
+
+
+
+
 
 		const booksActive = getCookie("booksActive");
 
-		if(!!booksActive){
+		if (!!booksActive) {
 			console.log("active books exist.")
 			booksActive.forEach(book => {
-				if(book.like){store.changeLike(book.isbn)};
-				if(book.cart > 0){
-					for(let i = 0; i < book.cart; i++){
+				if (book.like) { store.changeLike(book.isbn) };
+				if (book.cart > 0) {
+					for (let i = 0; i < book.cart; i++) {
 						store.changeCart(book.isbn, "add");
 					}
 				}
@@ -56,6 +61,6 @@ const app = Vue.createApp({
 	}
 })
 app
-.use(router)
-.use(vuetify)
-.mount('#app')
+	.use(router)
+	.use(vuetify)
+	.mount('#app')

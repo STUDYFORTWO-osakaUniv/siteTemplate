@@ -21,7 +21,7 @@ function get_data(id) {
         }
         hashArray.push(hash);
       }
-      console.log(hashArray);
+      // console.log(hashArray);
       return hashArray;
     })
     .catch((error) => {
