@@ -37,13 +37,18 @@ const app = Vue.createApp({
 		document.head.insertAdjacentHTML('beforeend', data.settings.fontStyle);
 		document.title = data.settings.title;
 
+		console.log(data.id);
 		get_data(data.id)
-		.then((response) => {
-			console.log(response);
-			response.forEach(book => {
-				this.books.push({ ...book, like: false, cart: 0 });
-			});
-		})
+			.then((response) => {
+				console.log("resolved:" + response);
+				response.forEach(book => {
+					this.books.push({ ...book, like: false, cart: 0 });
+				});
+			},
+				() => {
+					console.log("rejected");
+				}
+			)
 		// console.log(bookData);
 
 		const booksActive = getCookie("booksActive");
