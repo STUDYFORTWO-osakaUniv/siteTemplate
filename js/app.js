@@ -53,7 +53,7 @@ const app = Vue.createApp({
 
 		const booksActive = getCookie("booksActive");
 
-		if (!!booksActive) {
+		if (booksActive.length > 0) {
 			console.log("active books exist.")
 			booksActive.forEach(book => {
 				if (book.like) { store.changeLike(book.isbn) };
@@ -63,6 +63,8 @@ const app = Vue.createApp({
 					}
 				}
 			})
+		}else{
+			console.log("no active books.")
 		}
 	}
 })

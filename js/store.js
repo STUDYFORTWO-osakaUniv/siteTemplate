@@ -8,7 +8,7 @@ const store = {
 			title: "",
 			date: "",
 			place: "",
-			marquees:"",
+			marquees: "",
 			fontFamily: "",
 			mainColor: "",
 			subColor: "",
@@ -138,7 +138,8 @@ const store = {
 				booksActive.push(book);
 			}
 		})
-		setCookie("booksActive", booksActive);
+		const options = { secure: true, 'max-age': 14 * 24 * 3600 };
+		setCookie("booksActive", booksActive, options);
 	},
 
 }
