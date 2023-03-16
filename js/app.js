@@ -44,6 +44,22 @@ const app = Vue.createApp({
 				response.forEach(book => {
 					this.books.push({ ...book, like: false, cart: 0 });
 				});
+				
+				const booksActive = getCookie("booksActive");
+
+				if (booksActive.length > 0) {
+					console.log("active books exist.")
+					booksActive.forEach(book => {
+						if (book.like) { store.changeLike(book.isbn) };
+						if (book.cart > 0) {
+							for (let i = 0; i < book.cart; i++) {
+								store.changeCart(book.isbn, "add");
+							}
+						}
+					})
+				} else {
+					console.log("no active books.")
+				}
 			},
 				(error) => {
 					console.log("rejected:" + error);
@@ -51,21 +67,7 @@ const app = Vue.createApp({
 			)
 		// console.log(bookData);
 
-		const booksActive = getCookie("booksActive");
 
-		if (booksActive.length > 0) {
-			console.log("active books exist.")
-			booksActive.forEach(book => {
-				if (book.like) { store.changeLike(book.isbn) };
-				if (book.cart > 0) {
-					for (let i = 0; i < book.cart; i++) {
-						store.changeCart(book.isbn, "add");
-					}
-				}
-			})
-		}else{
-			console.log("no active books.")
-		}
 	}
 })
 app
