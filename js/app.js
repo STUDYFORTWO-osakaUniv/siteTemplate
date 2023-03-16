@@ -40,13 +40,13 @@ const app = Vue.createApp({
 		console.log(data.id);
 		get_data(data.id)
 			.then((response) => {
-				console.log("resolved:" + response);
+				// console.log("resolved:" + response);
 				response.forEach(book => {
 					this.books.push({ ...book, like: false, cart: 0 });
 				});
 			},
-				() => {
-					console.log("rejected");
+				(error) => {
+					console.log("rejected:" + error);
 				}
 			)
 		// console.log(bookData);
