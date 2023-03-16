@@ -26,7 +26,7 @@ const app = Vue.createApp({
 			booksLiked: store.state.booksLiked
 		}
 	},
-	created() {
+	async created() {
 		Object.keys(data.settings).forEach(key => {
 			if (this.settings[key] !== undefined) {
 				this.settings[key] = data.settings[key]
@@ -50,12 +50,13 @@ const app = Vue.createApp({
 		// 	})
 		// })
 
-		async () => {
-			const bookData = await get_data(data.id);
-			bookData.forEach(book => {
-				this.books.push({ ...book, like: false, cart: 0 });
-			})
-		}
+
+		const bookData = await get_data(data.id);
+		console.log(bookData);
+		bookData.forEach(book => {
+			this.books.push({ ...book, like: false, cart: 0 });
+		})
+
 
 
 
