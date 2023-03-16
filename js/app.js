@@ -39,10 +39,7 @@ const app = Vue.createApp({
 
 		get_data(data.id)
 		.then((response) => {
-			bookData = response;
-		})
-		.then(() => {
-			bookData.forEach(book => {
+			response.forEach(book => {
 				this.books.push({ ...book, like: false, cart: 0 });
 			})
 		})
