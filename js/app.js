@@ -36,20 +36,28 @@ const app = Vue.createApp({
 		document.head.insertAdjacentHTML('beforeend', data.settings.fontStyle);
 		document.title = data.settings.title;
 
-		// let bookData;
-		new Promise((resolve, reject) => {
-			const bookData = get_data(data.id);
-			while (!bookData) {
-				setTimeout(() => {
-					console.log("waiting");
-				}, 1000);
-			};
-			resolve(bookData);
-		}).then((bookData) => {
+		// new Promise((resolve, reject) => {
+		// 	const bookData = get_data(data.id);
+		// 	while (!bookData) {
+		// 		setTimeout(() => {
+		// 			console.log("waiting");
+		// 		}, 1000);
+		// 	};
+		// 	resolve(bookData);
+		// }).then((bookData) => {
+		// 	bookData.forEach(book => {
+		// 		this.books.push({ ...book, like: false, cart: 0 });
+		// 	})
+		// })
+
+		async () => {
+			const bookData = await get_data(data.id);
 			bookData.forEach(book => {
 				this.books.push({ ...book, like: false, cart: 0 });
 			})
-		})
+		}
+
+
 
 		const booksActive = getCookie("booksActive");
 
