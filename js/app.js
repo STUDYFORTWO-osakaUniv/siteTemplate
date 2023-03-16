@@ -1,5 +1,6 @@
 // const bookData = data.books;
 // const bookData = get_data(data.id);
+let bookData = [];
 
 const { createVuetify } = Vuetify;
 const vuetify = createVuetify();
@@ -26,7 +27,7 @@ const app = Vue.createApp({
 			booksLiked: store.state.booksLiked
 		}
 	},
-	async created() {
+	created() {
 		Object.keys(data.settings).forEach(key => {
 			if (this.settings[key] !== undefined) {
 				this.settings[key] = data.settings[key]
@@ -36,29 +37,16 @@ const app = Vue.createApp({
 		document.head.insertAdjacentHTML('beforeend', data.settings.fontStyle);
 		document.title = data.settings.title;
 
-		// new Promise((resolve, reject) => {
-		// 	const bookData = get_data(data.id);
-		// 	while (!bookData) {
-		// 		setTimeout(() => {
-		// 			console.log("waiting");
-		// 		}, 1000);
-		// 	};
-		// 	resolve(bookData);
-		// }).then((bookData) => {
-		// 	bookData.forEach(book => {
-		// 		this.books.push({ ...book, like: false, cart: 0 });
-		// 	})
-		// })
-
-
-		const bookData = await get_data(data.id);
-		console.log(bookData);
-		bookData.forEach(book => {
-			this.books.push({ ...book, like: false, cart: 0 });
+		get_data(data.id)
+		.then((response) => {
+			bookData = response;
 		})
-
-
-
+		.then(() => {
+			bookData.forEach(book => {
+				this.books.push({ ...book, like: false, cart: 0 });
+			})
+		})
+		// console.log(bookData);
 
 		const booksActive = getCookie("booksActive");
 
