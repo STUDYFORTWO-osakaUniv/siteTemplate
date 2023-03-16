@@ -1,6 +1,6 @@
 // const bookData = data.books;
 // const bookData = get_data(data.id);
-let bookData = [];
+// let bookData = [];
 
 const { createVuetify } = Vuetify;
 const vuetify = createVuetify();
@@ -39,9 +39,10 @@ const app = Vue.createApp({
 
 		get_data(data.id)
 		.then((response) => {
+			console.log(response);
 			response.forEach(book => {
 				this.books.push({ ...book, like: false, cart: 0 });
-			})
+			});
 		})
 		// console.log(bookData);
 
