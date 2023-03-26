@@ -8,7 +8,7 @@ function get_data(id) {
     })
     .then((json) => {
       //取得したデータに合わせてタイトルつけてみました
-      var keys = ["isbn", "title", "author", "author_2nd", "publisher", "originalPrice", "sellingPrice", "genre", "before_stock", "sold", "reserved_reservations", "non_reserved_reservations", "stock", "sirabas", "check", "human_error", "half_originalPrice"];
+      var keys = ["isbn", "title", "author", "author_2nd", "publisher", "originalPrice", "sellingPrice", "genre", "before_stock", "sold", "reserved_reservations", "non_reserved_reservations", "stock"];
 
       var hashArray = [];
       //繰り返し処理にて実装
