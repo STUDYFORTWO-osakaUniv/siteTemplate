@@ -2,7 +2,7 @@
 
 function get_data(id) {
   const promise = new Promise((resolve, reject) => {
-    fetch("https://sheets.googleapis.com/v4/spreadsheets/" + id + "/values/%E5%9C%A8%E5%BA%AB%E3%83%AA%E3%82%B9%E3%83%88?key=AIzaSyCzHErhLM_SGjMqXYI8enMX22PndIX9Nl0")
+    fetch("https://sheets.googleapis.com/v4/spreadsheets/" + id + "/values/在庫リスト?key=AIzaSyCzHErhLM_SGjMqXYI8enMX22PndIX9Nl0")
     .then((res) => {
       return (res.json());
     })
