@@ -1035,7 +1035,7 @@ const articlesComponent = {
 				:key="i"
 			></cv-heading>
 			<v-container>
-				<p style="padding-left:36px">{{ article.text }}<p>
+				<div style="padding-left:36px" v-html="article.text"><div>
 			</v-container>
 		</template>
 	`
